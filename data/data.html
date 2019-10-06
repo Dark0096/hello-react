@@ -13,44 +13,44 @@
 
 </div>
 <script type="text/babel">
-    class Circle extends React.Component {
-        render() {
+  class Circle extends React.Component {
+    render() {
 
-            const circleStyle = {
-                padding: 10,
-                margin: 20,
-                display: "inline-block",
-                backgroundColor: this.props.bgColor,
-                borderRadius: "50%",
-                width: 100,
-                height: 100,
-            };
-            return (
-                <div style={circleStyle}>
+      const circleStyle = {
+        padding: 10,
+        margin: 20,
+        display: "inline-block",
+        backgroundColor: this.props.bgColor,
+        borderRadius: "50%",
+        width: 100,
+        height: 100,
+      };
+      return (
+        <div style={circleStyle}>
 
-                </div>
-            );
-        }
+        </div>
+      );
+    }
+  }
+
+  function showCircle() {
+    const colors = ["#393E41", "#E94F37", "#1C89BF", "#A1D363"];
+
+    const renderData = [];
+
+    for (let i = 0; i < colors.length; i++) {
+      renderData.push(<Circle key={i} bgColor={colors[i]}/>);
     }
 
-    function showCircle() {
-        const colors = ["#393E41", "#E94F37", "#1C89BF", "#A1D363"];
+    return renderData;
+  }
 
-        const renderData = [];
-
-        for (let i = 0; i < colors.length; i++) {
-            renderData.push(<Circle key={i} bgColor={colors[i]}/>);
-        }
-
-        return renderData;
-    }
-
-    ReactDOM.render(
-        <div>
-            {showCircle()}
-        </div>,
-        document.querySelector("#container")
-    )
+  ReactDOM.render(
+    <div>
+      {showCircle()}
+    </div>,
+    document.querySelector("#container")
+  )
 
 </script>
 </body>
