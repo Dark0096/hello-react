@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>From Data to UI</title>
+    <title>Click me!</title>
     <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
@@ -36,6 +36,26 @@
     }
   }
 
+  class PlusButton extends React.Component {
+    render() {
+      var buttonStyle = {
+        fontSize: "1em",
+        width: 30,
+        height: 30,
+        fontFamily: "sans-serif",
+        color: "#333",
+        fontWeight: "bold",
+        lineHeight: "3px"
+      };
+
+      return (
+        <button style={buttonStyle} onClick={this.props.clickHandler}>
+            +
+        </button>
+      );
+    }
+  }
+
   class CounterParent extends React.Component {
     constructor(props, context) {
       super(props, context);
@@ -43,6 +63,22 @@
       this.state = {
         count: 0
       };
+
+      this.increase = this.increase.bind(this);
+    }
+
+    increase(e) {
+      var increasedCount = this.state.count;
+
+      if (e.shiftKey) {
+        increasedCount += 10;
+      } else {
+        increasedCount += 1;
+      }
+
+      this.setState({
+        count: increasedCount
+      });
     }
 
     render() {
@@ -55,20 +91,10 @@
         textAlign: "center"
       };
 
-      var buttonStyle = {
-        fontSize: "1em",
-        width: 30,
-        height: 30,
-        fontFamily: "sans-serif",
-        color: "#333",
-        fontWeight: "bold",
-        lineHeight: "3px"
-      };
-
       return (
         <div style={backgroundStyle}>
           <Counter display={this.state.count}/>
-          <button style={buttonStyle}>+</button>
+          <PlusButton clickHandler={this.increase}>+</PlusButton>
         </div>
       );
     }
